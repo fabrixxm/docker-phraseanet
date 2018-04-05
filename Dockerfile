@@ -123,14 +123,16 @@ RUN printf "display_errors=on\ndisplay_startup_errors=on\n" >> /usr/local/etc/ph
        echo "php_admin_value[error_log] = /var/log/php5-fpm.log"; \
     } | tee /usr/local/etc/php-fpm.d/zz-phrasea.conf
 
-ENV ADMIN_EMAIL "phrasea@example.com"
+ENV ADMIN_EMAIL "admin@example.com"
 ENV ADMIN_PASSWORD "admin"
 ENV WEB_HOST "localhost"
-#ENV DB_HOST
+ENV DB_HOST "localhost"
 ENV DB_APP_NAME "phraseanet_app"
 ENV DB_DATA_NAME "phraseanet_data"
 ENV DB_USER "phraseanet"
-#ENV DB_PASSWORD
+ENV DB_PASSWORD "db_password_123"
+
+EXPOSE 9000
 
 WORKDIR /var/www/html
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

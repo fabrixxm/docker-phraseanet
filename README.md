@@ -14,7 +14,7 @@ This is an image running [Phraseanet Digital Asset Management System](https://ww
 As this image only contains PHP FPM and the application, the easiest way to use it, is to run it with [docker-compose](https://docs.docker.com/compose/reference/overview/) for which we provide a [sample compose file](https://github.com/netresearch/docker-phraseanet/blob/master/docker-compose.yml) with nginx, mariab and redis:
 
 ```bash
-git clone git@github.com:netresearch/docker-phraseanet.git
+git clone git@github.com:ditoy/docker-phraseanet.git
 cd docker-phraseanet
 docker-compose up -d
 ```
