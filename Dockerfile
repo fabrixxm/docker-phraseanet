@@ -6,6 +6,7 @@ RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/dem
 # First command is from: http://stackoverflow.com/a/37426929
 RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/demo/debian/ | awk '/^Link:/ { print $2 }' | sed -e 's@<http://\(.*\)/debian/>;@\1@g'`/" /etc/apt/sources.list \
     && apt-get update && apt-get install -y --no-install-recommends --fix-missing \
+        nano \
         imagemagick \
         libevent-dev \
         ufraw \
