@@ -1,5 +1,6 @@
 version: '2'
 services:
+
   nginx:
     image: nginx
     container_name: nginx
@@ -19,6 +20,7 @@ services:
     command: /bin/bash -c "envsubst '$$NGINX_ROOT $$NGINX_PORT $$NGINX_HOST' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
     networks:
       - phraseanet
+
   fpm:
     build: .
     container_name: fpm
@@ -28,6 +30,7 @@ services:
     links:
       - db
       - redis
+      - elasticsearch
     environment:
       ADMIN_EMAIL: "${ADMIN_EMAIL}"
       ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
@@ -39,6 +42,7 @@ services:
       DB_PASSWORD: "${DB_PASSWORD}"
     networks:
       - phraseanet
+
   db:
     image: mariadb
     container_name: db
@@ -55,12 +59,37 @@ services:
       - ./mariadb/initdb.d:/docker-entrypoint-initdb.d
     networks:
       - phraseanet
+
   redis:
     image: redis:alpine
     container_name: redis
     domainname: local
     networks:
       - phraseanet
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+    container_name: elasticsearch
+    domainname: local
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - phraseanet
+
+volumes:
+  esdata:
+    driver: local
 
 networks:
   phraseanet:
