@@ -102,7 +102,7 @@ RUN printf 'date.timezone=Europe/Berlin\nsession.cache_limiter=off\nshort_open_t
 
 RUN rm -rf /var/www/html \
     && cd /var/www \
-    && curl -sL https://www.phraseanet.com/builds/alchemy-fr-Phraseanet-v3.8.8.zip > phrasea.zip \
+    && curl -sL https://www.phraseanet.com/builds/alchemy-fr-Phraseanet-v4.0.2.zip > phrasea.zip \
     && unzip -q phrasea.zip \
     && rm phrasea.zip \
     && mv Phraseanet html \
