@@ -14,6 +14,9 @@ set -e
 #     --server-name='$WEB_HOST' \
 #     --yes"
 
+
+mkdir -p ./datas/phraseanet_data/documents
+
 chown -R www-data:www-data .
 chmod -R 0777 datas
 

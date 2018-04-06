@@ -68,7 +68,7 @@ services:
       - phraseanet
 
   elasticsearch:
-    image: elasticsearch:2.4.6
+    build: ./elasticsearch
     container_name: elasticsearch
     domainname: local
     environment:
