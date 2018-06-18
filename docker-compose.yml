@@ -42,6 +42,11 @@ services:
       DB_DATA_NAME: "${DB_DATA_NAME}"
       DB_USER: "${DB_USER}"
       DB_PASSWORD: "${DB_PASSWORD}"
+      ELASTICSEARCH_HOST: "${ELASTICSEARCH_HOST}"
+      ELASTICSEARCH_PORT: "${ELASTICSEARCH_PORT}"
+      ELASTICSEARCH_INDEX: "${ELASTICSEARCH_INDEX}"
+      REDIS_HOST: "${REDIS_HOST}"
+      REDIS_PORT: "${REDIS_PORT}"
     networks:
       - phraseanet
 
@@ -68,9 +73,12 @@ services:
     image: redis:alpine
     container_name: redis
     domainname: local
+    ports:
+      - "6379:6379"
     networks:
       - phraseanet
 
+  ##### ELASTICSEARCH ######
   elasticsearch:
     build: ./elasticsearch
     container_name: elasticsearch

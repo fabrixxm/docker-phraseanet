@@ -139,7 +139,11 @@ ENV DB_APP_NAME "phraseanet_app"
 ENV DB_DATA_NAME "phraseanet_data"
 ENV DB_USER "phraseanet"
 ENV DB_PASSWORD "db_password_123"
-
+ENV ELASTICSEARCH_HOST "localhost"
+ENV ELASTICSEARCH_PORT "9200"
+ENV ELASTICSEARCH_INDEX "phraseanet"
+ENV REDIS_HOST "localhost"
+ENV REDIS_PORT "6379"
 EXPOSE 9000
 
 WORKDIR /var/www/html
